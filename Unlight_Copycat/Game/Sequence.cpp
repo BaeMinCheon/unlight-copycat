@@ -7,7 +7,7 @@ Main::Main()
 
 void Main::init()
 {
-	/*buttonVector.push_back(std::make_shared<CircButton>(490, 300, 75,
+	buttonVector.push_back(std::make_shared<CircButton>(490, 300, 75,
 		(TCHAR*)TEXT("Quest"), white, []()
 	{
 		++GameWindow::sequenceIndex;
@@ -16,7 +16,7 @@ void Main::init()
 		(TCHAR*)TEXT("Quit"), white, []()
 	{
 		DestroyWindow(GetActiveWindow());
-	}));*/
+	}));
 }
 
 void Main::draw(Application& app)
