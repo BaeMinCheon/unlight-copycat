@@ -2,9 +2,6 @@
 
 #include "Sequence.h"
 
-#include <vector>
-#include <memory>
-
 class GameWindow : public Application
 {
 public:

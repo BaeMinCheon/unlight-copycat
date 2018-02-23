@@ -146,16 +146,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="button.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="pclaf.cpp" />
     <ClCompile Include="Sequence.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="button.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="pclaf.h" />
     <ClInclude Include="Sequence.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

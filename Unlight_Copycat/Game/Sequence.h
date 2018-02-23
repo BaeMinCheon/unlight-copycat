@@ -1,18 +1,22 @@
 #pragma once
 
-#include "pclaf.h"
+#include "Button.h"
+
+#include <vector>
+#include <memory>
 
 class Sequence
 {
 public:
+	virtual void init() = 0;
 	virtual void draw(Application&) = 0;
 
-	virtual void leftClick(int, int);
-	virtual void doubleClick(int, int);
-	virtual void rightClick(int, int);
+	virtual void leftClick(int, int) = 0;
+	virtual void doubleClick(int, int) = 0;
+	virtual void rightClick(int, int) = 0;
 
-private:
-	;
+protected:
+	std::vector<std::shared_ptr<Button>> buttonVector;
 };
 
 class Main : public Sequence
@@ -20,7 +24,7 @@ class Main : public Sequence
 public:
 	Main();
 
-	void init();
+	void init() override;
 	void draw(Application&) override;
 
 	void leftClick(int, int) override;
@@ -33,7 +37,7 @@ class Quest : public Sequence
 public:
 	Quest();
 
-	void init();
+	void init() override;
 	void draw(Application&) override;
 
 	void leftClick(int, int) override;
@@ -46,7 +50,7 @@ class Battle : public Sequence
 public:
 	Battle();
 
-	void init();
+	void init() override;
 	void draw(Application&) override;
 
 	void leftClick(int, int) override;

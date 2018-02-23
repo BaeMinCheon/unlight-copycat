@@ -47,7 +47,7 @@ void GameWindow::mouseRDown(int x, int y)
 
 int mainLAF()
 {
-	GameWindow app(TEXT("Unlight Copycat"), 900, 900, 100, 100);
+	GameWindow app(TEXT("Unlight Copycat"), 800, 800, 100, 100);
 	app.run();
 
 	return 0;
