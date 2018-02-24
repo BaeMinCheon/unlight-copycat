@@ -150,12 +150,14 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="pclaf.cpp" />
     <ClCompile Include="Sequence.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="pclaf.h" />
     <ClInclude Include="Sequence.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

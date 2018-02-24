@@ -2,6 +2,7 @@
 
 std::vector<std::shared_ptr<Sequence>> GameWindow::sequenceVector;
 int GameWindow::sequenceIndex;
+User GameWindow::player;
 
 GameWindow::GameWindow(TCHAR* title, int wid, int hei, int x, int y)
 	: Application(title, wid, hei, x, y)

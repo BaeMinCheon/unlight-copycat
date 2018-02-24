@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Button.h"
-
-#include <vector>
-#include <memory>
+#include "User.h"
 
 class Sequence
 {
@@ -43,6 +41,8 @@ public:
 	void leftClick(int, int) override;
 	void doubleClick(int, int) override;
 	void rightClick(int, int) override;
+
+	static int deckIndex;
 };
 
 class Battle : public Sequence

@@ -16,4 +16,5 @@ public:
 
 	static std::vector<std::shared_ptr<Sequence>> sequenceVector;
 	static int sequenceIndex;
+	static User player;
 };
