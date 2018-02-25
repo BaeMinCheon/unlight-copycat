@@ -191,6 +191,7 @@ public:
   int            width();
 
   void			 drawBitmap(Bitmap,int,int,int,int);
+  void			 drawBitmap(Bitmap, int, int, int, int, float);
   Bitmap		 loadBitmap(int);
   Bitmap		 loadBitmap(const TCHAR *);
 

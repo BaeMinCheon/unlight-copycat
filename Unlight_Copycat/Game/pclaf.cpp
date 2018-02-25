@@ -535,6 +535,19 @@ void Window::drawBitmap(Bitmap image,int x,int y,int width,int height)
 	ReleaseDC(hwnd, hdc);
 }
 
+void Window::drawBitmap(Bitmap image, int x, int y, int width, int height, float scale)
+{
+	HWND hwnd = handle();
+	HDC hdc = GetDC(hwnd);
+	HDC hmemdc = CreateCompatibleDC(hdc);
+	Bitmap holdbmp = (Bitmap)SelectObject(hmemdc, image);
+	StretchBlt(hdc, x, y, (width + 1)*scale, (height + 1)*scale,
+		hmemdc, 0, 0, width + 1, height + 1, SRCCOPY);
+	SelectObject(hmemdc, holdbmp);
+	DeleteDC(hmemdc);
+	ReleaseDC(hwnd, hdc);
+}
+
 Bitmap Window::loadBitmap(int id)
 {
 	return LoadBitmap(instance(), MAKEINTRESOURCE(id));

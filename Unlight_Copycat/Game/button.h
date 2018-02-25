@@ -32,8 +32,9 @@ public:
 	virtual bool isClick(int, int) override;
 	virtual void draw(Application&) override;
 	
-private:
-	int leftX,
+protected:
+	int 
+		leftX,
 		leftY,
 		width,
 		height;
@@ -49,7 +50,8 @@ public:
 	virtual void draw(Application&) override;
 
 private:
-	int centerX,
+	int 
+		centerX,
 		centerY,
 		radius;
 };

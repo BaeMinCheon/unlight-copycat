@@ -1,5 +1,7 @@
 #include "GameWindow.h"
 
+#include <fstream>
+
 Main::Main()
 {
 	init();
@@ -62,10 +64,86 @@ void Main::rightClick(int x, int y)
 
 // ===============================================================
 
-int Quest::deckIndex;
+int MapList::counter;
 
-Quest::Quest()
+MapList::MapList(std::string& n, int c, int l, int* p)
+	: RectButton(510, 60 + 40 * counter, 280, 30), cost(c), length(l)
 {
+	std::size_t convertNum = 0;
+	name = stringToTCHAR(n, convertNum);
+	if (convertNum > 16)
+	{
+		throw std::exception("MAP NAME CANNOT EXCEED 15 CHARACTERS");
+	}
+
+	blockArray = p;
+
+	++counter;
+}
+
+MapList::~MapList()
+{
+	delete[] blockArray;
+}
+
+void MapList::draw(Application& app)
+{
+	app.setBrush(color);
+	app.rectangle(leftX, leftY, width, height);
+	app.setBrush(gray);
+
+	app.wout << setpos(leftX + 8, leftY + 8) << TEXT("AP");
+	app.wout << setpos(leftX + 35, leftY + 8) << cost;
+	app.wout << setpos(leftX + width - 10 - app.textWidth(name),
+		leftY + height / 2 - app.textHeight() / 2) << name;
+}
+
+int Quest::deckIndex;
+std::vector<std::shared_ptr<MapList>> Quest::mapVector;
+
+Quest::Quest(char* filename)
+{
+	std::ifstream mapIn(filename);
+	if (mapIn.is_open() == false)
+	{
+		throw std::exception("MAP LIST CANNOT OPEN");
+	}
+	std::string buffer;
+	while (mapIn >> buffer)
+	{
+		static std::string n;
+		static int
+			c,
+			l;
+		static int* bArr = nullptr;
+
+		if (buffer == "name")
+		{
+			mapIn >> n;
+		}
+		else if (buffer == "cost")
+		{
+			mapIn >> c;
+		}
+		else if (buffer == "length")
+		{
+			mapIn >> l;
+			bArr = new int[l * 4];
+		}
+		else if (buffer == "start")
+		{
+			for (int i = 0; i < l * 4; ++i)
+			{
+				mapIn >> bArr[i];
+			}
+		}
+		else if (buffer=="end")
+		{
+			mapVector.push_back(std::make_shared<MapList>(n, c, l, bArr));
+		}
+	}
+	mapIn.close();
+
 	init();
 }
 
@@ -106,7 +184,7 @@ void Quest::draw(Application& app)
 //	app.rectangle(0, 760, 800, 40);
 	app.setBrush(white);
 	app.rectangle(25, 535, 350, 180);
-
+	
 	for (auto b : buttonVector)
 	{
 		b->draw(app);
@@ -114,8 +192,25 @@ void Quest::draw(Application& app)
 
 	GameWindow::player.printInfo(app);
 
+	auto& currentDeck = GameWindow::player.deckVector[deckIndex];
 	app.wout << setpos(52, 735) << deckIndex + 1;
-//	GameWindow::player.deckVector;
+	app.wout << setpos(120, 735) << currentDeck->name;
+	for (int i = 0; i < 3; ++i)
+	{
+		if (currentDeck->card[i] < 0)
+		{
+			app.rectangle(40 + 110 * i, 550, 100, 150);
+		}
+		else
+		{
+			app.drawBitmap(GameWindow::bitmapVector[currentDeck->card[i]], 40 + 110 * i, 550, 200, 300, 0.5);
+		}
+	}
+
+	for (auto l : mapVector)
+	{
+		l->draw(app);
+	}
 }
 
 void Quest::leftClick(int x, int y)

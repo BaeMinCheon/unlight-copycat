@@ -1,24 +1,25 @@
 #pragma once
 
-#include "pclaf.h"
+#include "Utility.h"
 
 #include <vector>
 #include <memory>
-#include <string>
 
 struct Deck
 {
 	Deck(std::string n, int c1, int c2, int c3)
-		: name(n), card01(c1), card02(c2), card03(c3)
+		: card{ c1, c2, c3 }
 	{
-		;
+		std::size_t convertNum = 0;
+		name = stringToTCHAR(n, convertNum);
+		if (convertNum > 16)
+		{
+			throw std::exception("DECK NAME CANNOT EXCEED 15 CHARACTERS");
+		}
 	}
 
-	std::string name;
-	int
-		card01,
-		card02,
-		card03;
+	TCHAR* name;
+	int card[3];
 };
 
 class User

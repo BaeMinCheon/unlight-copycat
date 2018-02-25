@@ -1,7 +1,6 @@
 #include "User.h"
 
 #include <fstream>
-#include <string>
 
 User::User(char* filename) throw ( std::exception )
 {
@@ -17,13 +16,8 @@ User::User(char* filename) throw ( std::exception )
 		{
 			userIn >> buffer;
 
-			std::size_t convertNum;
-			const char* temp = buffer.c_str();
-			
-			std::size_t length = buffer.size() + 1;
-			name = new TCHAR[length];
-			mbstowcs_s(&convertNum, name, length, temp, length);
-
+			std::size_t convertNum = 0;
+			name = stringToTCHAR(buffer, convertNum);
 			if (convertNum > 16)
 			{
 				throw std::exception("USER NAME CANNOT EXCEED 15 CHARACTERS");
@@ -56,6 +50,7 @@ User::User(char* filename) throw ( std::exception )
 				userIn >> c1;
 				userIn >> c2;
 				userIn >> c3;
+
 				deckVector.push_back(std::make_shared<struct Deck>(n, c1, c2, c3));
 			}
 		}

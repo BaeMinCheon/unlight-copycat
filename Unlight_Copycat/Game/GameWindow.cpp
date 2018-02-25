@@ -3,6 +3,7 @@
 std::vector<std::shared_ptr<Sequence>> GameWindow::sequenceVector;
 int GameWindow::sequenceIndex;
 User GameWindow::player;
+std::vector<Bitmap> GameWindow::bitmapVector;
 
 GameWindow::GameWindow(TCHAR* title, int wid, int hei, int x, int y)
 	: Application(title, wid, hei, x, y)
@@ -16,6 +17,10 @@ void GameWindow::init()
 	sequenceVector.push_back(std::make_shared<Quest>());
 	sequenceVector.push_back(std::make_shared<Battle>());
 	sequenceIndex = 0;
+	for (int i = 0; i < NUMBER_OF_BITMAP; ++i)
+	{
+		bitmapVector.push_back(loadBitmap(i + 1));
+	}
 }
 
 void GameWindow::paint()

@@ -2,6 +2,10 @@
 
 #include "Sequence.h"
 
+#include <map>
+
+const static int NUMBER_OF_BITMAP = 1;
+
 class GameWindow : public Application
 {
 public:
@@ -17,4 +21,5 @@ public:
 	static std::vector<std::shared_ptr<Sequence>> sequenceVector;
 	static int sequenceIndex;
 	static User player;
+	static std::vector<Bitmap> bitmapVector;
 };
