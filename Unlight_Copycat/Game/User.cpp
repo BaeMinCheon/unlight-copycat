@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-User::User(char* filename) throw ( std::exception )
+User::User(char* filename)
 {
 	std::ifstream userIn(filename);
 	if (userIn.is_open() == false)

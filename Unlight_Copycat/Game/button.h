@@ -8,6 +8,8 @@
 class Button
 {
 public:
+	Button(int, int);
+
 	virtual bool isClick(int, int) = 0;
 	virtual void draw(Application&) = 0;
 
@@ -16,11 +18,16 @@ public:
 	virtual void setColor(Color);
 	virtual void setName(TCHAR*);
 	virtual void init();
+	
+	virtual void moveTo(int, int);
 
 protected:
 	std::function<void()> work;
 	Color color;
 	TCHAR* name = nullptr;
+	int
+		X,
+		Y;
 };
 
 class RectButton : public Button
@@ -34,8 +41,6 @@ public:
 	
 protected:
 	int 
-		leftX,
-		leftY,
 		width,
 		height;
 };
@@ -50,8 +55,5 @@ public:
 	virtual void draw(Application&) override;
 
 private:
-	int 
-		centerX,
-		centerY,
-		radius;
+	int	radius;
 };

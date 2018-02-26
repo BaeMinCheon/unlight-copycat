@@ -21,13 +21,19 @@
     <ClCompile Include="GameWindow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Sequence.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Quest.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,6 +57,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Quest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

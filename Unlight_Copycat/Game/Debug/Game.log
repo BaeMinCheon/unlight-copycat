@@ -1,12 +1,3 @@
-﻿  GameWindow.cpp
-d:\code\git\_game_unlightcopycat\unlight_copycat\game\user.h(28): warning C4290: 함수가 __declspec(nothrow)가 아님을 나타내려는 경우를 제외하고 C++ 예외 사양은 무시됩니다.
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  User.cpp
-d:\code\git\_game_unlightcopycat\unlight_copycat\game\user.h(28): warning C4290: 함수가 __declspec(nothrow)가 아님을 나타내려는 경우를 제외하고 C++ 예외 사양은 무시됩니다.
-d:\code\git\_game_unlightcopycat\unlight_copycat\game\user.cpp(5): warning C4290: 함수가 __declspec(nothrow)가 아님을 나타내려는 경우를 제외하고 C++ 예외 사양은 무시됩니다.
-  Sequence.cpp
-d:\code\git\_game_unlightcopycat\unlight_copycat\game\user.h(28): warning C4290: 함수가 __declspec(nothrow)가 아님을 나타내려는 경우를 제외하고 C++ 예외 사양은 무시됩니다.
-  코드를 생성하고 있습니다...
+﻿  Quest.cpp
   Game.vcxproj -> D:\Code\Git\_Game_UnlightCopycat\Unlight_Copycat\Debug\Game.exe
   Game.vcxproj -> D:\Code\Git\_Game_UnlightCopycat\Unlight_Copycat\Debug\Game.pdb (Full PDB)

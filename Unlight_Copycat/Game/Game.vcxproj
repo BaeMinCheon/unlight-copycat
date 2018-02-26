@@ -146,16 +146,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="pclaf.cpp" />
-    <ClCompile Include="Sequence.cpp" />
+    <ClCompile Include="Quest.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="pclaf.h" />
+    <ClInclude Include="Quest.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="User.h" />

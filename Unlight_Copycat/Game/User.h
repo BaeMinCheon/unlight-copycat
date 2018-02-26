@@ -25,7 +25,7 @@ struct Deck
 class User
 {
 public:
-	User(char* = "RESOURCE/userInfo.txt") throw ( std::exception );
+	User(char* = "RESOURCE/userInfo.txt");
 
 	void printInfo(Application&) const;
 

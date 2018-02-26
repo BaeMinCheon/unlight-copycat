@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Sequence.h"
+#include "Main.h"
+#include "Quest.h"
+#include "Battle.h"
 
 #include <map>
 
