@@ -3,9 +3,9 @@ level	1
 gem	10000
 exp	0
 ap	10	100
-deck	FIRST_DECK	
-	0	0	0	
-	SECOND_DECK	
-	0	0	-1	
-	THIRD_DECK	
-	0	-1	-1
+deck	FIRST_DECK
+	1	11	21	
+	SECOND_DECK
+	2	12	-1	
+	THIRD_DECK
+	3	-1	-1

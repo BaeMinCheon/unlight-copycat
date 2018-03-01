@@ -7,7 +7,7 @@
 
 struct Deck
 {
-	Deck(std::string n, int c1, int c2, int c3)
+	Deck(std::string& n, int c1, int c2, int c3)
 		: card{ c1, c2, c3 }
 	{
 		std::size_t convertNum = 0;

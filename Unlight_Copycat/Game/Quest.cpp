@@ -3,9 +3,11 @@
 
 #include <fstream>
 
-MapList::MapList(std::string& n, int c, int l, int* p)
-	: RectButton(510, 60 + 40 * Quest::mapVector.size(), 280, 30),
-	cost(c), length(l), index(Quest::mapVector.size())
+std::vector<std::shared_ptr<RectButton>> Map::menuVector;
+
+Map::Map(std::string& n, int c, int l, int* b)
+	: list(510, 60 + 40 * Quest::mapVector.size(), 280, 30, c),
+	cost(c), length(l), block(b)
 {
 	std::size_t convertNum = 0;
 	name = stringToTCHAR(n, convertNum);
@@ -14,44 +16,101 @@ MapList::MapList(std::string& n, int c, int l, int* p)
 		throw std::exception("MAP NAME CANNOT EXCEED 15 CHARACTERS");
 	}
 
-	blockArray = p;
+	list.setName(name);
+
+	blockVector.push_back(std::make_shared<MapBlock>(290 - 800, 100, 12));
+	for (int i = 0; i < length; ++i)
+	{
+		blockVector.push_back(std::make_shared<MapBlock>(290 - 800, 150 + 55 * i, 20));
+	}
 }
 
-MapList::~MapList()
+Map::~Map()
 {
-	delete[] blockArray;
+	delete block;
 }
 
-void MapList::draw(Application& app)
+void Map::listDraw(Application& app)
 {
-	app.setBrush(color);
-	app.rectangle(X, Y, width, height);
-	app.setBrush(gray);
-
-	app.wout << setpos(X + 8, Y + 8) << TEXT("AP");
-	app.wout << setpos(X + 35, Y + 8) << cost;
-	app.wout << setpos(X + width - 10 - app.textWidth(name),
-		Y + height / 2 - app.textHeight() / 2) << name;
+	list.draw(app);
 }
 
-int MapList::getIndex() const
+bool Map::listClick(int x, int y)
 {
-	return index;
+	return list.isClick(x, y);
 }
 
-TCHAR* MapList::getName() const
+void Map::blockDraw(Application& app)
+{
+	app.rectangle(285, 100, 10, (blockVector.size() - 1) * 50);
+	for (auto b : blockVector)
+	{
+		b->draw(app);
+	}
+	if (Quest::mapListIndex >= 0)
+	{
+		app.wout << setpos(110, 60) <<
+			Quest::mapVector[Quest::mapListIndex]->getName();
+	}
+}
+
+bool Map::blockClick(int x, int y)
+{
+	for (auto b : blockVector)
+	{
+		if (b->isClick(x, y))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+TCHAR* Map::getName() const
 {
 	return name;
 }
 
-void MapList::decreaseIndex()
+void Map::menuIn()
 {
-	index -= 1;
+	menuVector[0]->moveTo(90, 50);
+	menuVector[1]->moveTo(10, 50);
+	menuVector[2]->moveTo(10, 110);
 }
 
+void Map::menuOut()
+{
+	menuVector[0]->moveTo(-800, 0);
+	menuVector[1]->moveTo(-800, 0);
+	menuVector[2]->moveTo(-800, 0);
+}
+
+bool Map::menuClick(int x, int y)
+{
+	for (auto m : menuVector)
+	{
+		if (m->isClick(x, y))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void Map::menuDraw(Application& app)
+{
+	for (auto m : menuVector)
+	{
+		m->draw(app);
+	}
+}
+
+// ==============================================================================
+
 int Quest::deckIndex;
-std::vector<std::shared_ptr<MapList>> Quest::mapVector;
+std::vector<std::shared_ptr<Map>> Quest::mapVector;
 int Quest::mapListIndex;
+bool Quest::mapInProcess;
 
 Quest::Quest(char* filename)
 {
@@ -80,6 +139,11 @@ Quest::Quest(char* filename)
 		else if (buffer == "length")
 		{
 			mapIn >> l;
+			if (l > 5)
+			{
+				throw std::exception("MAP LENGTH CANNOT EXCEED 5 BLOCK");
+			}
+
 			bArr = new int[l * 4];
 		}
 		else if (buffer == "start")
@@ -91,7 +155,11 @@ Quest::Quest(char* filename)
 		}
 		else if (buffer == "end")
 		{
-			mapVector.push_back(std::make_shared<MapList>(n, c, l, bArr));
+			mapVector.push_back(std::make_shared<Map>(n, c, l, bArr));
+		}
+		else
+		{
+			throw std::exception("ILLEGAL MAP LIST");
 		}
 	}
 	mapIn.close();
@@ -124,22 +192,35 @@ void Quest::init()
 			Quest::deckIndex = 0;
 		}
 	}));
-	buttonVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
+	
+	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 400, 460));
+	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
 		(TCHAR*)TEXT("START"), white, []()
 	{
 		;
 	}));
-	buttonVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
+	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
 		(TCHAR*)TEXT("DELETE"), white, []()
 	{
-		;
+		mapVector[mapListIndex] = nullptr;
+		for (unsigned i = mapListIndex; i < mapVector.size() - 1; ++i)
+		{
+			mapVector[i] = mapVector[i + 1];
+			mapVector[i]->list.upList();
+		}
+		mapVector.pop_back();
+
+		mapListIndex = -1;
+		Map::menuOut();
 	}));
-	buttonVector.push_back(std::make_shared<RectButton>(-800, 50, 400, 460,
-		(TCHAR*)TEXT(""), white, []()
+	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
+		(TCHAR*)TEXT("GIVEUP"), white, []()
 	{
 		;
 	}));
+
 	mapListIndex = -1;
+	mapInProcess = false;
 }
 
 void Quest::draw(Application& app)
@@ -175,18 +256,14 @@ void Quest::draw(Application& app)
 		}
 	}
 
-	for (auto l : mapVector)
+	Map::menuDraw(app);
+	for (auto m : mapVector)
 	{
-		l->draw(app);
+		m->listDraw(app);
 	}
-
-	if (mapListIndex == -1)
+	if (mapListIndex != -1)
 	{
-		;
-	}
-	else
-	{
-		app.wout << setpos(100, 60) << mapVector[mapListIndex]->getName();
+		mapVector[mapListIndex]->blockDraw(app);
 	}
 }
 
@@ -201,36 +278,45 @@ void Quest::leftClick(int x, int y)
 		}
 	}
 
-	if (!buttonVector[3]->isClick(x, y)
-		&& !buttonVector[4]->isClick(x, y)
-		&& !buttonVector[5]->isClick(x, y))
+	if (!Map::menuClick(x, y))
 	{
-		for (auto m : mapVector)
+		if (mapListIndex != -1)
 		{
-			if (m->isClick(x, y))
+			for (auto b : mapVector[mapListIndex]->blockVector)
 			{
-				buttonVector[3]->moveTo(10, 50);
-				buttonVector[4]->moveTo(10, 110);
-				buttonVector[5]->moveTo(90, 50);
-
-				mapListIndex = m->getIndex();
-				break;
-			}
-			else
-			{
-				buttonVector[3]->moveTo(-800, 0);
-				buttonVector[4]->moveTo(-800, 0);
-				buttonVector[5]->moveTo(-800, 0);
-
-				mapListIndex = -1;
+				b->blockOut();
 			}
 		}
+		Map::menuOut();
+		mapListIndex = -1;
 	}
+	for (unsigned i = 0; i < mapVector.size(); ++i)
+	{
+		if (mapVector[i]->listClick(x, y))
+		{
+			for (auto b : mapVector[i]->blockVector)
+			{
+				b->blockIn();
+			}
+			Map::menuIn();
+			if (mapListIndex == -1)
+			{
+				mapListIndex = i;
+			}
+			break;
+		}
+	}	
 }
 
 void Quest::doubleClick(int x, int y)
 {
-	;
+	for (auto b : Map::menuVector)
+	{
+		if (b->isClick(x, y))
+		{
+			b->doWork();
+		}
+	}
 }
 
 void Quest::rightClick(int x, int y)

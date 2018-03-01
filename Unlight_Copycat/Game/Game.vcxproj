@@ -173,7 +173,23 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="RESOURCE\000_BACK.bmp" />
+    <Image Include="RESOURCE\CARDS\000\000.bmp" />
+    <Image Include="RESOURCE\CARDS\000\001.bmp" />
+    <Image Include="RESOURCE\CARDS\000\002.bmp" />
+    <Image Include="RESOURCE\CARDS\000\003.bmp" />
+    <Image Include="RESOURCE\CARDS\000\004.bmp" />
+    <Image Include="RESOURCE\CARDS\000\005.bmp" />
+    <Image Include="RESOURCE\CARDS\000\011.bmp" />
+    <Image Include="RESOURCE\CARDS\000\012.bmp" />
+    <Image Include="RESOURCE\CARDS\000\013.bmp" />
+    <Image Include="RESOURCE\CARDS\000\014.bmp" />
+    <Image Include="RESOURCE\CARDS\000\015.bmp" />
+    <Image Include="RESOURCE\CARDS\000\021.bmp" />
+    <Image Include="RESOURCE\CARDS\000\022.bmp" />
+    <Image Include="RESOURCE\CARDS\000\023.bmp" />
+    <Image Include="RESOURCE\CARDS\000\024.bmp" />
+    <Image Include="RESOURCE\CARDS\000\025.bmp" />
+    <Image Include="resource\cards\000\bitmap1.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

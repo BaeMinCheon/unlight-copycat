@@ -7,7 +7,7 @@
 
 #include <map>
 
-const static int NUMBER_OF_BITMAP = 1;
+const static int NUMBER_OF_BITMAP = 25;
 
 class GameWindow : public Application
 {

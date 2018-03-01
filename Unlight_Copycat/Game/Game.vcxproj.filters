@@ -78,7 +78,55 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="RESOURCE\000_BACK.bmp">
+    <Image Include="RESOURCE\CARDS\000\000.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\cards\000\bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\001.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\002.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\003.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\004.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\005.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\011.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\012.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\013.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\014.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\015.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\021.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\022.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\023.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\024.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\CARDS\000\025.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

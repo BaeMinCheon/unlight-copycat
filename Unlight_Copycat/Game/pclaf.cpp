@@ -541,6 +541,7 @@ void Window::drawBitmap(Bitmap image, int x, int y, int width, int height, float
 	HDC hdc = GetDC(hwnd);
 	HDC hmemdc = CreateCompatibleDC(hdc);
 	Bitmap holdbmp = (Bitmap)SelectObject(hmemdc, image);
+	SetStretchBltMode(hdc, COLORONCOLOR);
 	StretchBlt(hdc, x, y, (width + 1)*scale, (height + 1)*scale,
 		hmemdc, 0, 0, width + 1, height + 1, SRCCOPY);
 	SelectObject(hmemdc, holdbmp);
@@ -868,7 +869,6 @@ void Window::point(const int x, const int y)
 
 void Window::polygon(POINT point[], int count)
 { Polygon(device, point, count); }
-
 
 void Window::print(TCHAR *str)
 {
