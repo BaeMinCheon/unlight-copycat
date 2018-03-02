@@ -1,5 +1,5 @@
 Sequence Summary
-----------------
+================
 
 ---
 
@@ -89,16 +89,27 @@ Sequence Summary
 		-	mapVector 모든 원소의 listDraw() 호출
 		-	선택된 맵의 blockDraw() 호출
 	-	void leftClick(int, int)
-		-	buttonVector 모든 원소의 isClick() 호출
-			-	해당하는 버튼의 doWork() 호출
-		-	맵 메뉴버튼이 클릭되지 않았다면
-			-	맵블럭을 화면 밖으로 이동
-			-	맵 메뉴버튼을 화면 밖으로 이동
-			-	mapListIndex = -1;
-		-	mapVector 모든 원소의 listClick() 호출
-			-	맵블럭을 화면 안으로 이동
-			-	맵 메뉴버튼을 화면 안으로 이동
-			-	mapListIndex = i;
+		-	맵을 진행하지 않고 있다면
+			-	buttonVector 모든 원소의 isClick() 호출
+				-	해당하는 버튼의 doWork() 호출
+			-	맵 메뉴버튼이 클릭되지 않았다면
+				-	맵블럭을 화면 밖으로 이동
+				-	맵 메뉴버튼을 화면 밖으로 이동
+				-	mapListIndex = -1;
+			-	mapVector 모든 원소의 listClick() 호출
+				-	맵블럭을 화면 안으로 이동
+				-	맵 메뉴버튼을 화면 안으로 이동
+				-	mapListIndex = i;
+		-	맵을 진행하고 있다면
+			-	SD캐릭터의 위치가 마지막 맵블럭이라면
+				-	포기버튼을 화면 밖으로
+				-	클리어버튼을 화면 안으로
+				-	클리어버튼의 isClick() 호출
+					-	mapInProcess = false;
+					-	포기버튼 작동
+					-	클리어버튼 화면 밖으로
+			-	다음 위치의 맵블럭이 클릭되었다면
+				-	++Map::position;
 	-	void doubleClick(int, int)
 		-	menuVector 모든 원소의 isClick() 호출
 			-	해당 버튼의 doWork() 호출

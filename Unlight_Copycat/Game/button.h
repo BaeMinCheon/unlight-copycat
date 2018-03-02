@@ -34,7 +34,7 @@ class RectButton : public Button
 {
 public:
 	RectButton(int, int, int, int);
-	RectButton(int, int, int, int, TCHAR*, Color, std::function<void()>);
+	RectButton(int, int, int, int, TCHAR*, Color = white, std::function<void()> = []() {});
 
 	virtual bool isClick(int, int) override;
 	virtual void draw(Application&) override;
@@ -49,11 +49,26 @@ class CircButton : public Button
 {
 public:
 	CircButton(int, int, int);
-	CircButton(int, int, int, TCHAR*, Color, std::function<void()>);
+	CircButton(int, int, int, TCHAR*, Color = white, std::function<void()> = []() {});
 
 	virtual bool isClick(int, int) override;
 	virtual void draw(Application&) override;
 
 private:
 	int	radius;
+};
+
+class OKBox : public RectButton
+{
+public:
+	OKBox(int, int, int, int);
+	OKBox(int, int, int, int, TCHAR*, Color = white, std::function<void()> = []() {});
+
+	virtual bool isClick(int, int) override;
+	virtual void draw(Application&) override;
+
+	virtual void moveTo(int, int) override;
+
+private:
+	RectButton ok;
 };

@@ -73,10 +73,12 @@ class Map
 		void blockIn()
 		{
 			X += 800;
+			Map::back.moveTo(90, 50);
 		}
 		void blockOut()
 		{
 			X -= 800;
+			Map::back.moveTo(-800, 0);
 		}
 
 	private:
@@ -89,10 +91,11 @@ public:
 
 	void listDraw(Application& app);
 	bool listClick(int, int);
-	void blockDraw(Application& app);
-	bool blockClick(int, int);
+	void infoDraw(Application& app);
+	static bool infoClick(int, int);
 
 	TCHAR* getName() const;
+	int getLength() const;
 
 	MapList list;
 	std::vector<std::shared_ptr<MapBlock>> blockVector;
@@ -103,6 +106,9 @@ public:
 	static void menuDraw(Application&);
 
 	static std::vector<std::shared_ptr<RectButton>> menuVector;
+	static RectButton back;
+	static int position;
+	static OKBox clear;
 
 private:
 	TCHAR* name;

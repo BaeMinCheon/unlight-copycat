@@ -56,7 +56,7 @@ User::User(char* filename)
 		}
 		else
 		{
-			break;
+			throw std::exception("ILLEGAL USER INFO");
 		}
 	}
 	userIn.close();

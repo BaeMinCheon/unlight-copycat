@@ -122,3 +122,38 @@ void CircButton::draw(Application& app)
 	app.wout << setpos(X - app.textWidth(name) / 2,
 		Y - app.textHeight() / 2) << name;
 }
+
+// ===============================================================
+
+OKBox::OKBox(int lx, int ly, int wid, int hei)
+	: RectButton(lx, ly, wid, hei),
+	ok(lx + wid / 2, ly + hei / 2, wid / 4, hei / 4, TEXT("OK"))
+{
+	init();
+}
+
+OKBox::OKBox(int lx, int ly, int wid, int hei, TCHAR* n, Color c, std::function<void()> f)
+	: RectButton(lx, ly, wid, hei),
+	ok(lx + wid / 2, ly + hei / 2, wid / 4, hei / 4, TEXT("OK"))
+{
+	setName(n);
+	color = c;
+	work = f;
+}
+
+bool OKBox::isClick(int x, int y)
+{
+	return ok.isClick(x, y);
+}
+
+void OKBox::draw(Application& app)
+{
+	RectButton::draw(app);
+	ok.draw(app);
+}
+
+void OKBox::moveTo(int x, int y)
+{
+	RectButton::moveTo(x, y);
+	ok.moveTo(x + width / 2.75, y + height / 1.5);
+}
