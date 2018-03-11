@@ -11,7 +11,7 @@ void Main::init()
 	buttonVector.push_back(std::make_shared<CircButton>(490, 300, 75,
 		(TCHAR*)TEXT("Quest"), white, []()
 	{
-		++GameWindow::sequenceIndex;
+		GameWindow::currentSequence = "Quest";
 	}));
 	buttonVector.push_back(std::make_shared<CircButton>(100, 650, 50,
 		(TCHAR*)TEXT("Quit"), white, []()

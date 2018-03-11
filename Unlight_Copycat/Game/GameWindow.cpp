@@ -1,9 +1,10 @@
 #include "GameWindow.h"
 
-std::vector<std::shared_ptr<Sequence>> GameWindow::sequenceVector;
-int GameWindow::sequenceIndex;
+std::map<std::string, std::shared_ptr<Sequence>> GameWindow::sequenceMap;
+std::string GameWindow::currentSequence;
 User GameWindow::player;
 std::vector<Bitmap> GameWindow::bitmapVector;
+std::map<int, TCHAR*> GameWindow::itemNameMap;
 
 GameWindow::GameWindow(TCHAR* title, int wid, int hei, int x, int y)
 	: Application(title, wid, hei, x, y)
@@ -13,38 +14,42 @@ GameWindow::GameWindow(TCHAR* title, int wid, int hei, int x, int y)
 
 void GameWindow::init()
 {
-	sequenceVector.push_back(std::make_shared<Main>());
-	sequenceVector.push_back(std::make_shared<Quest>());
-	sequenceVector.push_back(std::make_shared<Battle>());
-	sequenceIndex = 0;
+	sequenceMap["Main"] = std::make_shared<Main>();
+	sequenceMap["Quest"] = std::make_shared<Quest>();
+	sequenceMap["Battle"] = std::make_shared<Battle>();
+
+	currentSequence = "Main";
+
 	for (int i = 0; i < NUMBER_OF_BITMAP; ++i)
 	{
 		bitmapVector.push_back(loadBitmap(i + 1));
 	}
+
+	itemNameMap[10000] = TEXT("GEM");
 }
 
 void GameWindow::paint()
 {
-	sequenceVector[sequenceIndex]->draw(*this);
+	sequenceMap[currentSequence]->draw(*this);
 }
 
 void GameWindow::mouseDown(int x, int y)
 {
-	sequenceVector[sequenceIndex]->leftClick(x, y);
+	sequenceMap[currentSequence]->leftClick(x, y);
 
 	clearAndUpdate();
 }
 
 void GameWindow::doubleClick(int x, int y)
 {
-	sequenceVector[sequenceIndex]->doubleClick(x, y);
+	sequenceMap[currentSequence]->doubleClick(x, y);
 
 	clearAndUpdate();
 }
 
 void GameWindow::mouseRDown(int x, int y)
 {
-	sequenceVector[sequenceIndex]->rightClick(x, y);
+	sequenceMap[currentSequence]->rightClick(x, y);
 
 	clearAndUpdate();
 }

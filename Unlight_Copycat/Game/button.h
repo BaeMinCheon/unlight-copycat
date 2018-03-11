@@ -61,7 +61,6 @@ private:
 class OKBox : public RectButton
 {
 public:
-	OKBox(int, int, int, int);
 	OKBox(int, int, int, int, TCHAR*, Color = white, std::function<void()> = []() {});
 
 	virtual bool isClick(int, int) override;

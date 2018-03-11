@@ -11,7 +11,7 @@ void Battle::init()
 	buttonVector.push_back(std::make_shared<RectButton>(10, 10, 60, 30,
 		(TCHAR*)TEXT("Back"), white, []()
 	{
-		--GameWindow::sequenceIndex;
+		GameWindow::currentSequence = "Quest";
 	}));
 }
 

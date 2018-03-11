@@ -36,6 +36,9 @@
     <ClCompile Include="Battle.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pclaf.h">
@@ -68,6 +71,9 @@
     <ClInclude Include="Battle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -79,9 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RESOURCE\CARDS\000\000.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="resource\cards\000\bitmap1.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="RESOURCE\CARDS\000\001.bmp">
@@ -127,6 +130,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="RESOURCE\CARDS\000\025.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RESOURCE\ITEMS\10001.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

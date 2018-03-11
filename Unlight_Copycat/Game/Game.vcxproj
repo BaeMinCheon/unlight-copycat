@@ -150,6 +150,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="pclaf.cpp" />
     <ClCompile Include="Quest.cpp" />
     <ClCompile Include="User.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="pclaf.h" />
     <ClInclude Include="Quest.h" />
     <ClInclude Include="resource.h" />
@@ -189,7 +191,7 @@
     <Image Include="RESOURCE\CARDS\000\023.bmp" />
     <Image Include="RESOURCE\CARDS\000\024.bmp" />
     <Image Include="RESOURCE\CARDS\000\025.bmp" />
-    <Image Include="resource\cards\000\bitmap1.bmp" />
+    <Image Include="RESOURCE\ITEMS\10001.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

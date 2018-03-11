@@ -125,20 +125,11 @@ void CircButton::draw(Application& app)
 
 // ===============================================================
 
-OKBox::OKBox(int lx, int ly, int wid, int hei)
-	: RectButton(lx, ly, wid, hei),
-	ok(lx + wid / 2, ly + hei / 2, wid / 4, hei / 4, TEXT("OK"))
-{
-	init();
-}
-
 OKBox::OKBox(int lx, int ly, int wid, int hei, TCHAR* n, Color c, std::function<void()> f)
-	: RectButton(lx, ly, wid, hei),
+	: RectButton(lx, ly, wid, hei, n, c, f),
 	ok(lx + wid / 2, ly + hei / 2, wid / 4, hei / 4, TEXT("OK"))
 {
-	setName(n);
-	color = c;
-	work = f;
+	;
 }
 
 bool OKBox::isClick(int x, int y)
@@ -155,5 +146,5 @@ void OKBox::draw(Application& app)
 void OKBox::moveTo(int x, int y)
 {
 	RectButton::moveTo(x, y);
-	ok.moveTo(x + width / 2.75, y + height / 1.5);
+	ok.moveTo(static_cast<int>(x + width / 2.75), static_cast<int>(y + height / 1.5));
 }

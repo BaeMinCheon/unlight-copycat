@@ -7,7 +7,7 @@
 
 #include <map>
 
-const static int NUMBER_OF_BITMAP = 25;
+const static int NUMBER_OF_BITMAP = 10001;
 
 class GameWindow : public Application
 {
@@ -21,8 +21,9 @@ public:
 	void doubleClick(int, int) override;
 	void mouseRDown(int, int) override;
 
-	static std::vector<std::shared_ptr<Sequence>> sequenceVector;
-	static int sequenceIndex;
+	static std::map<std::string, std::shared_ptr<Sequence>> sequenceMap;
+	static std::string currentSequence;
 	static User player;
 	static std::vector<Bitmap> bitmapVector;
+	static std::map<int, TCHAR*> itemNameMap;
 };

@@ -3,124 +3,9 @@
 
 #include <fstream>
 
-std::vector<std::shared_ptr<RectButton>> Map::menuVector;
-RectButton Map::back(-800, 0, 400, 460);
-int Map::position = -1;
-OKBox Map::clear(-800, 0, 190, 100, TEXT("QUEST CLEAR"));
-
-Map::Map(std::string& n, int c, int l, int* b)
-	: list(510, 60 + 40 * Quest::mapVector.size(), 280, 30, c),
-	cost(c), length(l), block(b)
-{
-	std::size_t convertNum = 0;
-	name = stringToTCHAR(n, convertNum);
-	if (convertNum > 16)
-	{
-		throw std::exception("MAP NAME CANNOT EXCEED 15 CHARACTERS");
-	}
-
-	list.setName(name);
-
-	blockVector.push_back(std::make_shared<MapBlock>(290 - 800, 100, 12));
-	for (int i = 0; i < length; ++i)
-	{
-		blockVector.push_back(std::make_shared<MapBlock>(290 - 800, 150 + 55 * i, 20));
-	}
-}
-
-Map::~Map()
-{
-	delete block;
-}
-
-void Map::listDraw(Application& app)
-{
-	list.draw(app);
-}
-
-bool Map::listClick(int x, int y)
-{
-	return list.isClick(x, y);
-}
-
-void Map::infoDraw(Application& app)
-{
-	back.draw(app);
-	app.rectangle(285, 100, 10, (blockVector.size() - 1) * 50);
-	for (auto b : blockVector)
-	{
-		b->draw(app);
-	}
-	if (Quest::mapListIndex >= 0)
-	{
-		app.wout << setpos(110, 60) <<
-			Quest::mapVector[Quest::mapListIndex]->getName();
-	}
-	if (position >= 0)
-	{
-		app.setBrush(brightRed);
-		app.rectangle(285, 85 + position * 55, 10, 20);
-		app.setBrush(gray);
-	}
-	if (position == Quest::mapVector[Quest::mapListIndex]->getLength())
-	{
-		clear.draw(app);
-	}
-}
-
-bool Map::infoClick(int x, int y)
-{
-	return back.isClick(x, y);
-}
-
-TCHAR* Map::getName() const
-{
-	return name;
-}
-
-int Map::getLength() const
-{
-	return length;
-}
-
-void Map::menuIn()
-{
-	menuVector[0]->moveTo(10, 50);
-	menuVector[1]->moveTo(10, 110);
-}
-
-void Map::menuOut()
-{
-	menuVector[0]->moveTo(-800, 0);
-	menuVector[1]->moveTo(-800, 0);
-}
-
-bool Map::menuClick(int x, int y)
-{
-	for (auto m : menuVector)
-	{
-		if (m->isClick(x, y))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-void Map::menuDraw(Application& app)
-{
-	for (auto m : menuVector)
-	{
-		m->draw(app);
-	}
-}
+int Quest::deckIndex;
 
 // ==============================================================================
-
-int Quest::deckIndex;
-std::vector<std::shared_ptr<Map>> Quest::mapVector;
-int Quest::mapListIndex;
-bool Quest::mapInProcess;
 
 Quest::Quest(char* filename)
 {
@@ -165,8 +50,8 @@ Quest::Quest(char* filename)
 		}
 		else if (buffer == "end")
 		{
-			mapVector.push_back(std::make_shared<Map>(n, c, l, bArr));
-			if (mapVector.size() == 4)
+			Map::mapVector.push_back(std::make_shared<Map>(n, c, l, bArr));
+			if (Map::mapVector.size() == 6)
 			{
 				break;
 			}
@@ -186,7 +71,7 @@ void Quest::init()
 	buttonVector.push_back(std::make_shared<RectButton>(730, 10, 60, 30,
 		(TCHAR*)TEXT("BACK"), white, []()
 	{
-		--GameWindow::sequenceIndex;
+		GameWindow::currentSequence = "Main";
 	}));
 	buttonVector.push_back(std::make_shared<RectButton>(10, 727, 30, 30,
 		(TCHAR*)TEXT("<"), white, []()
@@ -210,36 +95,38 @@ void Quest::init()
 	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
 		(TCHAR*)TEXT("START"), white, []()
 	{
-		mapInProcess = true;
+		Map::mapInProcess = true;
 		Map::menuOut();
 		Map::menuVector[2]->moveTo(10, 170);
 		Map::position = 0;
+
+		GameWindow::player.apDelta(-Map::mapVector[Map::mapListIndex]->getCost());
 	}));
 	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
 		(TCHAR*)TEXT("DELETE"), white, []()
 	{
-		mapVector[mapListIndex] = nullptr;
-		for (unsigned i = mapListIndex; i < mapVector.size() - 1; ++i)
+		Map::mapVector[Map::mapListIndex] = nullptr;
+		for (unsigned i = Map::mapListIndex; i < Map::mapVector.size() - 1; ++i)
 		{
-			mapVector[i] = mapVector[i + 1];
-			mapVector[i]->list.upList();
+			Map::mapVector[i] = Map::mapVector[i + 1];
+			Map::mapVector[i]->list.upList();
 		}
-		mapVector.pop_back();
+		Map::mapVector.pop_back();
 
-		mapListIndex = -1;
+		Map::mapListIndex = -1;
 		Map::menuOut();
 	}));
 	Map::menuVector.push_back(std::make_shared<RectButton>(-800, 0, 70, 50,
 		(TCHAR*)TEXT("GIVEUP"), white, []()
 	{
-		mapInProcess = false;\
+		Map::mapInProcess = false;
 		Map::menuVector[2]->moveTo(-800, 0);
 		Map::menuVector[1]->doWork();
 		Map::position = -1;
 	}));
 
-	mapListIndex = -1;
-	mapInProcess = false;
+	Map::mapListIndex = -1;
+	Map::mapInProcess = false;
 }
 
 void Quest::draw(Application& app)
@@ -276,19 +163,19 @@ void Quest::draw(Application& app)
 	}
 
 	Map::menuDraw(app);
-	for (auto m : mapVector)
+	for (auto m : Map::mapVector)
 	{
 		m->listDraw(app);
 	}
-	if (mapListIndex != -1)
+	if (Map::mapListIndex != -1)
 	{
-		mapVector[mapListIndex]->infoDraw(app);
+		Map::mapVector[Map::mapListIndex]->infoDraw(app);
 	}
 }
 
 void Quest::leftClick(int x, int y)
 {
-	if (!mapInProcess)
+	if (!Map::mapInProcess)
 	{
 		for (auto b : buttonVector)
 		{
@@ -301,28 +188,28 @@ void Quest::leftClick(int x, int y)
 
 		if (!Map::menuClick(x, y) && !Map::infoClick(x, y))
 		{
-			if (mapListIndex != -1)
+			if (Map::mapListIndex != -1)
 			{
-				for (auto b : mapVector[mapListIndex]->blockVector)
+				for (auto b : Map::mapVector[Map::mapListIndex]->blockVector)
 				{
 					b->blockOut();
 				}
 			}
 			Map::menuOut();
-			mapListIndex = -1;
+			Map::mapListIndex = -1;
 		}
-		for (unsigned i = 0; i < mapVector.size(); ++i)
+		for (unsigned i = 0; i < Map::mapVector.size(); ++i)
 		{
-			if (mapVector[i]->listClick(x, y))
+			if (Map::mapVector[i]->listClick(x, y))
 			{
-				for (auto b : mapVector[i]->blockVector)
+				for (auto b : Map::mapVector[i]->blockVector)
 				{
 					b->blockIn();
 				}
 				Map::menuIn();
-				if (mapListIndex == -1)
+				if (Map::mapListIndex == -1)
 				{
-					mapListIndex = i;
+					Map::mapListIndex = i;
 				}
 				break;
 			}
@@ -330,21 +217,31 @@ void Quest::leftClick(int x, int y)
 	}
 	else
 	{
-		if (Map::position == mapVector[mapListIndex]->getLength())
+		if (Map::position < Map::mapVector[Map::mapListIndex]->getLength())
+		{
+			auto& nextBlock = Map::mapVector[Map::mapListIndex]->blockVector[Map::position + 1];
+			if (nextBlock->isClick(x, y))
+			{
+				nextBlock->doWork();
+				++Map::position;
+				if (Map::position == Map::mapVector[Map::mapListIndex]->getLength())
+				{
+					Map::menuVector[2]->moveTo(-800, 0);
+					Map::clear.moveTo(305, 300);
+				}
+			}
+		}
+		if (Map::position == Map::mapVector[Map::mapListIndex]->getLength())
 		{
 			Map::menuVector[2]->moveTo(-800, 0);
 			Map::clear.moveTo(305, 300);
 
 			if (Map::clear.isClick(x, y))
 			{
-				mapInProcess = false;
+				Map::mapInProcess = false;
 				Map::menuVector[2]->doWork();
 				Map::clear.moveTo(-800, 0);
 			}
-		}
-		else if (mapVector[mapListIndex]->blockVector[Map::position + 1]->isClick(x, y))
-		{
-			++Map::position;
 		}
 	}
 }
