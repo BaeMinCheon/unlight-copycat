@@ -1,0 +1,18 @@
+{
+	name	:	first_deck
+	first	:	evarist_n1
+	second	:	izac_n1
+	third	:	grunwald_n1
+}
+{
+	name	:	deck_#2
+	first	:	evarist_n2
+	second	:	izac_n2
+	third	:	none
+}
+{
+	name	:	last_deck
+	first	:	evarist_n3
+	second	:	none
+	third	:	none
+}

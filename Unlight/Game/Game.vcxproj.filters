@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{d6a4d323-11ab-4c8f-b56e-571f167b278d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sequence">
+      <UniqueIdentifier>{34242d70-cb05-4db1-b825-2abb02b5e366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{18c66c09-9116-4f49-9750-fcfbda079c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{f7e05fcf-e687-4cec-ba93-e66bd2de8f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Data">
+      <UniqueIdentifier>{e3695a1d-b519-4ad9-b6b1-71aadae217d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Cards">
+      <UniqueIdentifier>{f8d1c090-9984-46e3-b138-f2b54b8a3e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Items">
+      <UniqueIdentifier>{60d0f2bb-bf88-441c-a008-9897e48f0b9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\pclaf.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Entry.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Main.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\BRect.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Button.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\DOne.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Dialog.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\DTwo.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\BCirc.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\User.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Quest.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\pclaf.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Main.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Sequence.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Button.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\BRect.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Dialog.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\DOne.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Object.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\DTwo.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\BCirc.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\User.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Quest.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resource\Data\DECK.txt">
+      <Filter>Resource\Data</Filter>
+    </Text>
+    <Text Include="Resource\Data\USER.txt">
+      <Filter>Resource\Data</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\Cards\0000\0000.bmp" />
+    <Image Include="Resource\Cards\0000\0001.bmp" />
+    <Image Include="Resource\Cards\0000\0002.bmp" />
+    <Image Include="Resource\Cards\0000\0003.bmp" />
+    <Image Include="Resource\Cards\0000\0004.bmp" />
+    <Image Include="Resource\Cards\0000\0005.bmp" />
+    <Image Include="Resource\Cards\0000\0011.bmp" />
+    <Image Include="Resource\Cards\0000\0012.bmp" />
+    <Image Include="Resource\Cards\0000\0013.bmp" />
+    <Image Include="Resource\Cards\0000\0014.bmp" />
+    <Image Include="Resource\Cards\0000\0015.bmp" />
+    <Image Include="Resource\Cards\0000\0021.bmp" />
+    <Image Include="Resource\Cards\0000\0022.bmp" />
+    <Image Include="Resource\Cards\0000\0023.bmp" />
+    <Image Include="Resource\Cards\0000\0024.bmp" />
+    <Image Include="Resource\Cards\0000\0025.bmp" />
+  </ItemGroup>
+</Project>
