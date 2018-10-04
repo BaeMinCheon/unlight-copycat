@@ -5,10 +5,11 @@
 #include <Core/User.h>
 #include <Utility/Utility.h>
 
-User::User(class Game* _pg, char* _uf, char* _df):
+User::User(class Game* _pg, char* _uf, char* _df, char* _qf):
 	mGame(_pg),
 	mUserFile(_uf),
 	mDeckFile(_df),
+	mQuestFile(_qf),
 	mName(nullptr)
 {
 	for (int i = 0; i < 3; ++i)
@@ -305,4 +306,9 @@ void User::loadDeck()
 	}
 
 	input.close();
+}
+
+void User::loadQuest()
+{
+	;
 }

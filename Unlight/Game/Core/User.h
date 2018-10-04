@@ -8,10 +8,15 @@ struct DeckInfo
 	int mCard[3];
 };
 
+struct QuestInfo
+{
+	;
+};
+
 class User
 {
 public:
-	User(class Game* _pg, char* _uf, char* _df);
+	User(class Game* _pg, char* _uf, char* _df, char* _qf);
 	~User();
 
 	void create();
@@ -46,10 +51,12 @@ public:
 private:
 	void loadUser();
 	void loadDeck();
+	void loadQuest();
 
 	class Game* mGame;
 	char* mUserFile;
 	char* mDeckFile;
+	char* mQuestFile;
 	TCHAR* mName;
 	std::size_t mNameSize;
 	int mLevel;

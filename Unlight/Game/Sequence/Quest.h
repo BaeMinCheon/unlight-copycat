@@ -21,7 +21,13 @@ public:
 	void paint(class Application& _ap) override;
 	void timer() override;
 
+	void addBQuest(class BQuest* _pq);
+	void updateQVec();
+	void eraseBQuest(class BQuest* _pq);
+
 private:
 	std::vector<class Button*> mBVector;
 	int mCurDeck;
+	std::vector<class BQuest*> mQVector;
+	int mCurQuest;
 };

@@ -152,7 +152,9 @@
     <ClCompile Include="Core\User.cpp" />
     <ClCompile Include="Sequence\Main.cpp" />
     <ClCompile Include="Sequence\Quest.cpp" />
+    <ClCompile Include="Sequence\QuestSub.cpp" />
     <ClCompile Include="Utility\BCirc.cpp" />
+    <ClCompile Include="Utility\BQuest.cpp" />
     <ClCompile Include="Utility\BRect.cpp" />
     <ClCompile Include="Utility\Button.cpp" />
     <ClCompile Include="Utility\Dialog.cpp" />
@@ -166,17 +168,19 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sequence\Main.h" />
     <ClInclude Include="Sequence\Quest.h" />
+    <ClInclude Include="Sequence\QuestSub.h" />
     <ClInclude Include="Sequence\Sequence.h" />
     <ClInclude Include="Utility\BCirc.h" />
+    <ClInclude Include="Utility\BQuest.h" />
     <ClInclude Include="Utility\BRect.h" />
     <ClInclude Include="Utility\Button.h" />
     <ClInclude Include="Utility\Dialog.h" />
     <ClInclude Include="Utility\DOne.h" />
     <ClInclude Include="Utility\DTwo.h" />
-    <ClInclude Include="Utility\Object.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resource\Data\DECK.txt" />
+    <Text Include="Resource\Data\QUEST.txt" />
     <Text Include="Resource\Data\USER.txt" />
   </ItemGroup>
   <ItemGroup>

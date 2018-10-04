@@ -1,8 +1,10 @@
 #include <Core/Game.h>
 #include <Core/User.h>
 #include <Sequence/Quest.h>
+#include <Sequence/QuestSub.h>
 #include <Utility/BRect.h>
 #include <Utility/BCirc.h>
+#include <Utility/BQuest.h>
 #include <Utility/DOne.h>
 #include <Utility/DTwo.h>
 
@@ -45,11 +47,23 @@ void Quest::create()
 			mCurDeck = 0;
 		}
 	});
+
+	this->addBQuest(new BQuest(this, "TEST01", 1));
+	this->addBQuest(new BQuest(this, "TEST02", 2));
+	this->addBQuest(new BQuest(this, "TEST03", 3));
+	this->addBQuest(new BQuest(this, "TEST04", 4));
+	this->addBQuest(new BQuest(this, "TEST05", 5));
+	this->addBQuest(new BQuest(this, "TEST06", 6));
+	this->addBQuest(new BQuest(this, "TEST07", 7));
 }
 
 void Quest::quit()
 {
 	for (auto b : mBVector)
+	{
+		delete b;
+	}
+	for (auto b : mQVector)
 	{
 		delete b;
 	}
@@ -61,6 +75,10 @@ void Quest::mouseDown(int _x, int _y)
 	{
 		b->mouseDown(_x, _y);
 	}
+	for (auto q : mQVector)
+	{
+		q->mouseDown(_x, _y);
+	}
 }
 
 void Quest::mouseMDown(int _x, int _y)
@@ -68,6 +86,10 @@ void Quest::mouseMDown(int _x, int _y)
 	for (auto b : mBVector)
 	{
 		b->mouseMDown(_x, _y);
+	}
+	for (auto q : mQVector)
+	{
+		q->mouseMDown(_x, _y);
 	}
 }
 
@@ -77,6 +99,10 @@ void Quest::mouseRDown(int _x, int _y)
 	{
 		b->mouseRDown(_x, _y);
 	}
+	for (auto q : mQVector)
+	{
+		q->mouseRDown(_x, _y);
+	}
 }
 
 void Quest::doubleClick(int _x, int _y)
@@ -84,6 +110,10 @@ void Quest::doubleClick(int _x, int _y)
 	for (auto b : mBVector)
 	{
 		b->doubleClick(_x, _y);
+	}
+	for (auto q : mQVector)
+	{
+		q->doubleClick(_x, _y);
 	}
 }
 
@@ -118,6 +148,10 @@ void Quest::paint(class Application& _ap)
 		{
 			b->paint(_ap);
 		}
+		for (auto q : mQVector)
+		{
+			q->paint(_ap);
+		}
 	}
 	{
 		mGame->getUser()->paint(_ap);
@@ -130,6 +164,47 @@ void Quest::timer()
 	{
 		b->timer();
 	}
+	for (auto q : mQVector)
+	{
+		q->timer();
+	}
 
 	mGame->getUser()->timer();
+}
+
+void Quest::addBQuest(class BQuest* _pq)
+{
+	if (mQVector.size() >= 7)
+	{
+		delete _pq;
+	}
+	else
+	{
+		mQVector.push_back(_pq);
+		this->updateQVec();
+	}
+}
+
+void Quest::updateQVec()
+{
+	int height = 60;
+	for (auto q : mQVector)
+	{
+		q->setPos(510, height);
+		height += 40;
+	}
+}
+
+void Quest::eraseBQuest(class BQuest* _pq)
+{
+	auto iter = std::find(mQVector.begin(), mQVector.end(), _pq);
+	if (iter == mQVector.end())
+	{
+		;
+	}
+	else
+	{
+		mQVector.erase(iter);
+	}
+	this->updateQVec();
 }

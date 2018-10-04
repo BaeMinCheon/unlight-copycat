@@ -47,7 +47,6 @@ void Game::quit()
 	DestroyWindow(this->handle());
 }
 
-
 void Game::mouseDown(int _x, int _y)
 {
 	if (mDlg)
@@ -95,7 +94,6 @@ void Game::doubleClick(int _x, int _y)
 		mSeqMap[mCurSeq]->mouseDown(_x, _y);
 	}
 }
-
 
 void Game::paint()
 {

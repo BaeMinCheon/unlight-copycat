@@ -19,6 +19,11 @@ Button::~Button()
 	}
 }
 
+class Sequence* Button::getSeq()
+{
+	return mSeq;
+}
+
 void Button::setText(std::string& _t)
 {
 	if (mText)
@@ -42,4 +47,10 @@ void Button::setFunc(int _i, std::function<void()> _f)
 	{
 		mFunc[_i] = _f;
 	}
+}
+
+void Button::setPos(int _x, int _y)
+{
+	mPos.first = _x;
+	mPos.second = _y;
 }

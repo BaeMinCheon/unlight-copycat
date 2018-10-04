@@ -1,0 +1,16 @@
+{
+	name	:	test
+	cost	:	1
+	length	:	2
+	first	:	0
+	second	:	0
+}
+{
+	name	:	REMEMBER
+	cost	:	2
+	length	:	4
+	first	:	0
+	second	:	0
+	third	:	0
+	fourth	:	0
+}

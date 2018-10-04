@@ -22,6 +22,9 @@
     <Filter Include="Resource\Items">
       <UniqueIdentifier>{60d0f2bb-bf88-441c-a008-9897e48f0b9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Cards\0000">
+      <UniqueIdentifier>{2912f10c-a07c-4446-8b4d-c585bf1eab73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\pclaf.cpp">
@@ -60,6 +63,12 @@
     <ClCompile Include="Sequence\Quest.cpp">
       <Filter>Sequence</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\BQuest.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\QuestSub.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\pclaf.h">
@@ -86,9 +95,6 @@
     <ClInclude Include="Utility\DOne.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Object.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\DTwo.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -104,12 +110,21 @@
     <ClInclude Include="resource.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\BQuest.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\QuestSub.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resource\Data\DECK.txt">
       <Filter>Resource\Data</Filter>
     </Text>
     <Text Include="Resource\Data\USER.txt">
+      <Filter>Resource\Data</Filter>
+    </Text>
+    <Text Include="Resource\Data\QUEST.txt">
       <Filter>Resource\Data</Filter>
     </Text>
   </ItemGroup>
@@ -119,21 +134,53 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resource\Cards\0000\0000.bmp" />
-    <Image Include="Resource\Cards\0000\0001.bmp" />
-    <Image Include="Resource\Cards\0000\0002.bmp" />
-    <Image Include="Resource\Cards\0000\0003.bmp" />
-    <Image Include="Resource\Cards\0000\0004.bmp" />
-    <Image Include="Resource\Cards\0000\0005.bmp" />
-    <Image Include="Resource\Cards\0000\0011.bmp" />
-    <Image Include="Resource\Cards\0000\0012.bmp" />
-    <Image Include="Resource\Cards\0000\0013.bmp" />
-    <Image Include="Resource\Cards\0000\0014.bmp" />
-    <Image Include="Resource\Cards\0000\0015.bmp" />
-    <Image Include="Resource\Cards\0000\0021.bmp" />
-    <Image Include="Resource\Cards\0000\0022.bmp" />
-    <Image Include="Resource\Cards\0000\0023.bmp" />
-    <Image Include="Resource\Cards\0000\0024.bmp" />
-    <Image Include="Resource\Cards\0000\0025.bmp" />
+    <Image Include="Resource\Cards\0000\0000.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0001.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0002.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0003.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0004.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0005.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0011.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0012.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0013.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0014.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0015.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0021.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0022.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0023.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0024.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
+    <Image Include="Resource\Cards\0000\0025.bmp">
+      <Filter>Resource\Cards\0000</Filter>
+    </Image>
   </ItemGroup>
 </Project>

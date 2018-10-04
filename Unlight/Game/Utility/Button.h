@@ -30,8 +30,10 @@ public:
 	virtual void paint(class Application& _ap) = 0;
 	virtual void timer() = 0;
 	
+	class Sequence* getSeq();
 	virtual void setText(std::string& _t);
 	virtual void setFunc(int _i, std::function<void()> _f);
+	virtual void setPos(int _x, int _y);
 
 protected:
 	class Sequence* mSeq;

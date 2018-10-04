@@ -1,6 +1,6 @@
 name	:	Gnanaht
 level	:	1
-gem		:	10000
-exp		:	0
+gem	:	10000
+exp	:	0
 cur_ap	:	10
 max_ap	:	100
